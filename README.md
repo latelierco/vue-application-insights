@@ -1,6 +1,15 @@
 # vue-application-insights
 
-### Get started
+
+## Installation
+
+
+```console
+$ npm install vue-application-insights save
+```
+
+## Get started
+
 
 ```js
 import Vue from 'vue'
