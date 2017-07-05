@@ -5,7 +5,7 @@
 
 
 ```console
-$ npm install vue-application-insights save
+$ npm install vue-application-insights --save
 ```
 
 ## Get started
