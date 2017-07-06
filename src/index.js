@@ -2,7 +2,7 @@
 import { AppInsights } from "applicationinsights-js"
 
 /**
- * Install function passed to Vue.use() show documentation in vue.js website.
+ * Install function passed to Vue.use() show documentation on vue.js website.
  *
  * @param Vue
  * @param options
