@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Alxios/vue-application-insights.git"
+    "url": "git+https://github.com/latelierco/vue-application-insights.git"
   },
   "keywords": [
     "vue",
@@ -23,9 +23,9 @@
   "author": "L'Atelier <hello@latelier.co>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Alxios/vue-application-insights/issues"
+    "url": "https://github.com/latelierco/vue-application-insights/issues"
   },
-  "homepage": "https://github.com/Alxios/vue-application-insights#readme",
+  "homepage": "https://github.com/latelierco/vue-application-insights#readme",
   "dependencies": {
     "applicationinsights-js": "^1.0.9"
   },
