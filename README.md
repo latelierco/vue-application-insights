@@ -35,3 +35,16 @@ Vue.use(VueAppInsights, {
 })
 ```
 
+Exemple with custom track event
+
+```js
+Vue.extend({
+
+  methods: {
+    custom_action() {
+      this.$appInsights.trackEvent("custom_action", { value: 'ok' });
+    }   
+  }
+  
+});
+```
