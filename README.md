@@ -35,7 +35,7 @@ Vue.use(VueAppInsights, {
 })
 ```
 
-Exemple with custom track event
+Example with custom track event
 
 ```js
 Vue.extend({
