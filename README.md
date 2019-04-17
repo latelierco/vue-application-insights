@@ -53,8 +53,8 @@ Vue.extend({
 
 - **id** - The instrumentation key of your AppInsights resource on Azure.
 - **router** - The router instance, which events should be tracked as page views _(optional)_.
-- **basePath** - Prefix of the tracked page view _(optional, default is '(Application Root)')_
-- **appInsights** - Can be used if you don't want this module to initialize the AppInsights instance _(optional)_.
+**baseName** String that will prefix the name of the tracked page _(optional, default is '(Vue App)')_
+**appInsights** Instance of the Application Insights client  _(optional)_.
 - **trackInitialPageView** - Boolean that determines whether or not the initial page view should be tracked. _(optional, defaults to true)_
 
 ## Initializing AppInsights from outside the Vue application
