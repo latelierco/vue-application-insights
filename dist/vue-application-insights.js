@@ -52,21 +52,18 @@ function setupPageTracking(options, Vue) {
 
   var router = options.router;
 
-  var basePath = options.basePath || '(Application Root)';
-
-  var pathFormatter = function pathFormatter(path) {
-    return basePath + '/' + path.substr(1);
-  };
+  var baseName = options.baseName || '(Vue App)';
 
   router.beforeEach(function (route, from, next) {
-    var path = pathFormatter(route.fullPath);
-    Vue.appInsights.startTrackPage(path);
+    var name = baseName + ' / ' + route.name;
+    Vue.appInsights.startTrackPage(name);
     next();
   });
 
   router.afterEach(function (route) {
-    var path = pathFormatter(route.fullPath);
-    Vue.appInsights.stopTrackPage(path, route.fullPath);
+    var name = baseName + ' / ' + route.name;
+    var url = location.protocol + '//' + location.host + '/' + route.fullPath;
+    Vue.appInsights.stopTrackPage(name, url);
   });
 }
 

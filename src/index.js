@@ -45,20 +45,18 @@ function setupPageTracking(options, Vue) {
 
   const router = options.router
 
-  const basePath = options.basePath || '(Application Root)'
-
-  const pathFormatter = path =>
-  basePath + '/' + path.substr(1)
+  const baseName = options.baseName || '(Vue App)'
 
   router.beforeEach( (route, from, next) => {
-    const path = pathFormatter(route.fullPath);
-    Vue.appInsights.startTrackPage(path)
+    const name = baseName + ' / ' + route.name;
+    Vue.appInsights.startTrackPage(name)
     next()
   })
 
   router.afterEach( route => {
-    const path = pathFormatter(route.fullPath);
-    Vue.appInsights.stopTrackPage(path, route.fullPath)
+    const name = baseName + ' / ' + route.name;
+    const url = location.protocol + '//' + location.host + '/' + route.fullPath;
+    Vue.appInsights.stopTrackPage(name, url);
   })
 }
 
