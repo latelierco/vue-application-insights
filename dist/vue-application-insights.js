@@ -62,7 +62,7 @@ function setupPageTracking(options, Vue) {
 
   router.afterEach(function (route) {
     var name = baseName + ' / ' + route.name;
-    var url = location.protocol + '//' + location.host + '/' + route.fullPath;
+    var url = location.protocol + '//' + location.host + route.fullPath;
     Vue.appInsights.stopTrackPage(name, url);
   });
 }
