@@ -10,12 +10,14 @@ import { AppInsights } from "applicationinsights-js"
 function install (Vue, options) {
 
   const { id } = options
+  const appInsightConfig = options.appInsightsConfig || {};
+  appInsightConfig.instrumentationKey = id;
   
   if (options.appInsights) {
     Vue.appInsights = options.appInsights
   } else {
-    Vue.appInsights = AppInsights
-    Vue.appInsights.downloadAndSetup({ instrumentationKey: id }) 
+    Vue.appInsights = AppInsights    
+    Vue.appInsights.downloadAndSetup(appInsightConfig) 
     if (typeof(options.onAfterScriptLoaded) === 'function') {
       options.onAfterScriptLoaded()
     }
