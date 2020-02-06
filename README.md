@@ -57,6 +57,7 @@ Vue.extend({
 - **appInsights** Instance of the Application Insights client  _(optional)_.
 - **trackInitialPageView** - Boolean that determines whether or not the initial page view should be tracked. _(optional, defaults to true)_
 - **onAfterScriptLoaded** Callback function that will be invoked after AppInsights script have loaded. _(optional, defaults to undefined)_
+- **appInsightsConfig** Object where you can put custom [AppInsights configuration](https://github.com/microsoft/ApplicationInsights-JS#configuration) _(optional, defaults to empty object)_
 
 ## Initializing AppInsights from outside the Vue application
 
