@@ -14,13 +14,14 @@ var _applicationinsightsJs = require('applicationinsights-js');
  */
 function install(Vue, options) {
   var id = options.id;
-
+  var appInsightConfig = options.appInsightsConfig || {};
+  appInsightConfig.instrumentationKey = id;
 
   if (options.appInsights) {
     Vue.appInsights = options.appInsights;
   } else {
     Vue.appInsights = _applicationinsightsJs.AppInsights;
-    Vue.appInsights.downloadAndSetup({ instrumentationKey: id });
+    Vue.appInsights.downloadAndSetup(appInsightConfig);
     if (typeof(options.onAfterScriptLoaded) === 'function') {
       options.onAfterScriptLoaded()
     }
