@@ -16,6 +16,9 @@ function install (Vue, options) {
   } else {
     Vue.appInsights = AppInsights
     Vue.appInsights.downloadAndSetup({ instrumentationKey: id }) 
+    if (typeof(options.onAfterScriptLoaded) === 'function') {
+      options.onAfterScriptLoaded()
+    }
   }
 
   const router = options.router
