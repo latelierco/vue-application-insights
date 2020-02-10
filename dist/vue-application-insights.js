@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _applicationinsightsJs = require('applicationinsights-js');
+var _applicationinsightsWeb = require('@microsoft/applicationinsights-web');
 
 /**
  * Install function passed to Vue.use() show documentation on vue.js website.
@@ -14,16 +14,17 @@ var _applicationinsightsJs = require('applicationinsights-js');
  */
 function install(Vue, options) {
   var id = options.id;
+
   var appInsightConfig = options.appInsightsConfig || {};
   appInsightConfig.instrumentationKey = id;
 
   if (options.appInsights) {
     Vue.appInsights = options.appInsights;
   } else {
-    Vue.appInsights = _applicationinsightsJs.AppInsights;
-    Vue.appInsights.downloadAndSetup(appInsightConfig);
-    if (typeof(options.onAfterScriptLoaded) === 'function') {
-      options.onAfterScriptLoaded()
+    Vue.appInsights = new _applicationinsightsWeb.ApplicationInsights({ config: appInsightConfig });
+    appInsights.loadAppInsights();
+    if (typeof options.onAfterScriptLoaded === 'function') {
+      options.onAfterScriptLoaded();
     }
   }
 
@@ -68,6 +69,7 @@ function setupPageTracking(options, Vue) {
     var name = baseName + ' / ' + route.name;
     var url = location.protocol + '//' + location.host + route.fullPath;
     Vue.appInsights.stopTrackPage(name, url);
+    Vue.appInsights.flush();
   });
 }
 
