@@ -9,17 +9,16 @@ import { ApplicationInsights } from '@microsoft/applicationinsights-web'
  */
 function install (Vue, options) {
 
-  const { id } = options
-  const appInsightConfig = options.appInsightsConfig || {};
-  appInsightConfig.instrumentationKey = id;
+  const config = options.appInsightsConfig || {};
+  config.instrumentationKey = config.instrumentationKey || options.id;
   
   if (options.appInsights) {
     Vue.appInsights = options.appInsights
   } else {
-    Vue.appInsights = new ApplicationInsights({ config: appInsightConfig })
-    appInsights.loadAppInsights()
+    Vue.appInsights = new ApplicationInsights({ config })
+    Vue.appInsights.loadAppInsights()
     if (typeof(options.onAfterScriptLoaded) === 'function') {
-      options.onAfterScriptLoaded()
+      options.onAfterScriptLoaded(Vue.appInsights)
     }
   }
 

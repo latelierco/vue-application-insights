@@ -13,18 +13,17 @@ var _applicationinsightsWeb = require('@microsoft/applicationinsights-web');
  * @param options
  */
 function install(Vue, options) {
-  var id = options.id;
 
-  var appInsightConfig = options.appInsightsConfig || {};
-  appInsightConfig.instrumentationKey = id;
+  var config = options.appInsightsConfig || {};
+  config.instrumentationKey = config.instrumentationKey || options.id;
 
   if (options.appInsights) {
     Vue.appInsights = options.appInsights;
   } else {
-    Vue.appInsights = new _applicationinsightsWeb.ApplicationInsights({ config: appInsightConfig });
-    appInsights.loadAppInsights();
+    Vue.appInsights = new _applicationinsightsWeb.ApplicationInsights({ config: config });
+    Vue.appInsights.loadAppInsights();
     if (typeof options.onAfterScriptLoaded === 'function') {
-      options.onAfterScriptLoaded();
+      options.onAfterScriptLoaded(Vue.appInsights);
     }
   }
 
