@@ -1,5 +1,5 @@
 
-import { AppInsights } from "applicationinsights-js"
+import { ApplicationInsights } from '@microsoft/applicationinsights-web'
 
 /**
  * Install function passed to Vue.use() show documentation on vue.js website.
@@ -9,13 +9,17 @@ import { AppInsights } from "applicationinsights-js"
  */
 function install (Vue, options) {
 
-  const { id } = options
+  const config = options.appInsightsConfig || {};
+  config.instrumentationKey = config.instrumentationKey || options.id;
   
   if (options.appInsights) {
     Vue.appInsights = options.appInsights
   } else {
-    Vue.appInsights = AppInsights
-    Vue.appInsights.downloadAndSetup({ instrumentationKey: id }) 
+    Vue.appInsights = new ApplicationInsights({ config })
+    Vue.appInsights.loadAppInsights()
+    if (typeof(options.onAfterScriptLoaded) === 'function') {
+      options.onAfterScriptLoaded(Vue.appInsights)
+    }
   }
 
   const router = options.router
@@ -57,6 +61,7 @@ function setupPageTracking(options, Vue) {
     const name = baseName + ' / ' + route.name;
     const url = location.protocol + '//' + location.host + route.fullPath;
     Vue.appInsights.stopTrackPage(name, url);
+    Vue.appInsights.flush();
   })
 }
 

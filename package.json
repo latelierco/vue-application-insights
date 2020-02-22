@@ -1,6 +1,6 @@
 {
   "name": "vue-application-insights",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "dist/vue-application-insights.js",
   "files": [
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/latelierco/vue-application-insights#readme",
   "dependencies": {
-    "applicationinsights-js": "^1.0.9"
+    "@microsoft/applicationinsights-web": "^2.4.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
