@@ -30,6 +30,7 @@ import router from './router'
 import VueAppInsights from 'vue-application-insights'
 
 Vue.use(VueAppInsights, {
+  baseName: 'My app name', // prefix to track route changes as page views with AppInsights
   id: 'XXXXXXXX--XXXX-XXXX-XXXXXXXXXXXX',
   router
 })
@@ -42,7 +43,7 @@ Vue.extend({
 
   methods: {
     custom_action() {
-      this.$appInsights.trackEvent("custom_action", { value: 'ok' });
+      this.$appInsights.trackEvent({ name: 'custom_name_event', properties: { property0: 'value0', property1: 'value1', property2: 'value2' } });
     }   
   }
   
