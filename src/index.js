@@ -1,5 +1,5 @@
 
-import { ApplicationInsights } from '@microsoft/applicationinsights-web'
+import { ApplicationInsights, Util } from '@microsoft/applicationinsights-web'
 
 /**
  * Install function passed to Vue.use() show documentation on vue.js website.
@@ -53,6 +53,8 @@ function setupPageTracking(options, Vue) {
 
   router.beforeEach( (route, from, next) => {
     const name = baseName + ' / ' + route.name;
+    Vue.appInsights.context.telemetryTrace.traceID = Util.generateW3CId();
+    Vue.appInsights.context.telemetryTrace.name = route.name;
     Vue.appInsights.startTrackPage(name)
     next()
   })
