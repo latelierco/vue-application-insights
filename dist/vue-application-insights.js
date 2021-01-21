@@ -60,6 +60,8 @@ function setupPageTracking(options, Vue) {
 
   router.beforeEach(function (route, from, next) {
     var name = baseName + ' / ' + route.name;
+    Vue.appInsights.context.telemetryTrace.traceID = _applicationinsightsWeb.Util.generateW3CId();
+    Vue.appInsights.context.telemetryTrace.name = route.name;
     Vue.appInsights.startTrackPage(name);
     next();
   });
