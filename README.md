@@ -43,7 +43,10 @@ Vue.extend({
 
   methods: {
     custom_action() {
-      this.$appInsights.trackEvent({ name: 'custom_name_event', properties: { property0: 'value0', property1: 'value1', property2: 'value2' } });
+      this.$appInsights.trackEvent({
+        name: 'custom_action', 
+        properties: { value: 'ok' }
+      });
     }   
   }
   
