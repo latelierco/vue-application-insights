@@ -30,6 +30,7 @@ import router from './router'
 import VueAppInsights from 'vue-application-insights'
 
 Vue.use(VueAppInsights, {
+  baseName: 'My app name', // prefix to track route changes as page views with AppInsights
   id: 'XXXXXXXX--XXXX-XXXX-XXXXXXXXXXXX',
   router
 })
