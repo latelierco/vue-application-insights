@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _applicationinsightsWeb = require('@microsoft/applicationinsights-web');
 
+function isRunningVue3(vue) {
+  return vue.version.startsWith('3.');
+}
+
 /**
  * Install function passed to Vue.use() show documentation on vue.js website.
  *
@@ -41,11 +45,15 @@ function install(Vue, options) {
     }
   }
 
-  Object.defineProperty(Vue.prototype, '$appInsights', {
-    get: function get() {
-      return Vue.appInsights;
-    }
-  });
+  if (isRunningVue3(Vue)) {
+    Vue.provide('appInsights', Vue.appInsights);
+  } else {
+    Object.defineProperty(Vue.prototype, '$appInsights', {
+      get: function get() {
+        return Vue.appInsights;
+      }
+    });
+  }
 }
 
 /**

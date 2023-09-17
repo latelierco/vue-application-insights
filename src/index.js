@@ -1,6 +1,10 @@
 
 import { ApplicationInsights, Util } from '@microsoft/applicationinsights-web'
 
+function isRunningVue3(vue) {
+  return vue.version.startsWith('3.');
+}
+
 /**
  * Install function passed to Vue.use() show documentation on vue.js website.
  *
@@ -32,13 +36,15 @@ function install (Vue, options) {
     } else {
       router.onReady(() => setupPageTracking(options, Vue))
     }
-
   }
 
-  Object.defineProperty(Vue.prototype, '$appInsights', {
-    get: () => Vue.appInsights
-  })
-
+  if (isRunningVue3(Vue)) {
+    Vue.provide('appInsights', Vue.appInsights);
+  } else {
+    Object.defineProperty(Vue.prototype, '$appInsights', {
+      get: () => Vue.appInsights
+    })
+  }
 }
 
 /**
