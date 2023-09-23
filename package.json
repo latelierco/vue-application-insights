@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/latelierco/vue-application-insights#readme",
   "dependencies": {
-    "@microsoft/applicationinsights-web": "^2.4.4"
+    "@microsoft/applicationinsights-web": "^2.8.15"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
